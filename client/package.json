@@ -1,0 +1,100 @@
+{
+  "name": "rps",
+  "displayName": "RPS",
+  "description": "Remote Protocol System",
+  "version": "1.1.2",
+  "publisher": "bentsui",
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:rps.onstart",
+    "onCommand:rps.onsubmit",
+    "onCommand:rps.onconfirm",
+    "onCommand:rps.sendmessage",
+    "onCommand:rps.historylog",
+    "onCommand:rps.stophistory",
+    "onCommand:rps.clipboard",
+    "onCommand:rps.extension",
+    "onCommand:rps.startlog",
+    "onCommand:rps.onsubmit_v2"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "rps-openpanel",
+          "title": "RPS_Panel",
+          "icon": ""
+        }
+      ]
+    },
+    "configuration":{
+      "title": "RPS",
+      "type": "object",
+      "properties": {
+        "rps.apiUrl":{
+          "scope":"resource",
+          "type":"string",
+          "description": "The URL of the RPS API for connecting to RPS backend",
+          "default": "http://localhost:3001"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "rps.openpanel",
+        "title": "Open Panel",
+        "category": "RPS"
+      },
+      {
+        "command": "rps.report",
+        "title": "Report",
+        "category": "RPS"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "rps.sideview",
+          "name": "RPS Candidate"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "install:all": "npm install && cd webview-ui && npm install && cd ../webview-ui && npm install",
+    "start:webview": "cd webview-ui && npm run start",
+    "build:webview": "cd webview-ui && npm run build",
+    "start:webview2": "cd webview-ui2 && npm run start",
+    "build:webview2": "cd webview-ui2 && npm run build",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.0.2",
+    "@types/glob": "^7.1.3",
+    "@types/node": "^12.20.55",
+    "@types/node-fetch": "^2.6.2",
+    "@types/vscode": "^1.72.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.19.0",
+    "glob": "^7.1.6",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3",
+    "vscode-test": "^1.5.0"
+  },
+  "dependencies": {
+    "diff": "^5.1.0",
+    "node-fetch": "^2.6.9"
+  }
+}
