@@ -10,3 +10,4 @@ tsconfig.lsif.json
 report
 /node_modules
 /out
+*.vsix
